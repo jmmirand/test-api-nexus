@@ -9,6 +9,7 @@
     nexus_api_port: 8081
     nexus_api_context_path: "/"
     nexus_rest_api_endpoint: "service/rest/v1/script"
+    custom_nexus_api_version: "0.0.1"
     current_nexus_admin_password: "admin123"
     nexus_api_validate_certs: false
     args:
