@@ -12,9 +12,13 @@
 
 - name: Get Script from github
   uri:
-    url: http://www.example.com
+    url: "https://raw.githubusercontent.com/jmmirand/test-api-nexus/first-method/nexus/v1/{{item}}.groovy"
     return_content: yes
-  register: this
+  register: nexus_groovy_scripts
+
+- name: debug scripts
+  debug:
+    msg: "{{nexus_groovy_scripts}}"
 
 - name: Declaring Groovy script {{ item }}
   uri:
@@ -30,4 +34,21 @@
     body:
       name: "{{ item }}"
       type: 'groovy'
-      content: "{{ lookup('file', '../../nexus/v1/' + item + '.groovy') }}"
+      content: "{{ nexus_groovy_scripts.content }}"
+
+
+#- name: Declaring Groovy script {{ item }}
+#  uri:
+#    url: "{{ nexus_api_scheme }}://{{ nexus_api_hostname }}:{{ nexus_api_port }}\
+#      {{ nexus_api_context_path }}{{ nexus_rest_api_endpoint }}"
+#    user: 'admin'
+#    password: "{{ current_nexus_admin_password }}"
+#    body_format: json
+#    method: POST
+#    force_basic_auth: yes
+#    status_code: 204
+#    validate_certs: "{{ nexus_api_validate_certs }}"
+#    body:
+#      name: "{{ item }}"
+#      type: 'groovy'
+#      content: "{{ lookup('file', '../../nexus/v1/' + item + '.groovy') }}"
