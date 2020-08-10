@@ -12,13 +12,10 @@
 
 - name: Get Script from github
   uri:
-    url: "https://raw.githubusercontent.com/jmmirand/test-api-nexus/first-method/nexus/v1/{{item}}.groovy"
+    url: "https://raw.githubusercontent.com/jmmirand/test-api-nexus/{{custom_nexus_api_version}}/nexus/v1/{{item}}.groovy"
     return_content: yes
   register: nexus_groovy_scripts
 
-- name: debug scripts
-  debug:
-    msg: "{{nexus_groovy_scripts}}"
 
 - name: Declaring Groovy script {{ item }}
   uri:
