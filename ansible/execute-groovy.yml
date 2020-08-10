@@ -12,10 +12,11 @@
     current_nexus_admin_password: "admin123"
     nexus_api_validate_certs: false
     args:
-      with_http_proxy: ""
+      arg1: ""
   tasks:
     - include_tasks: ./tasks/declare-scripts.yml
       with_items:
         - hello-world
         - set-realm
+
     - include_tasks: ./tasks/call-script.yml
